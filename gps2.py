@@ -2,6 +2,7 @@ import serial
 import time
 import string
 import pynmea2
+from sms import sendsms
 
 while True:
     try:
@@ -14,10 +15,9 @@ while True:
             lat=newmsg.latitude
             lng=newmsg.longitude
             gps = " Latitude= " + str(lat) + " and Longitude= " + str(lng)
+            sendsms(gps)
             print(gps)
-            ser.flush()
-            ser.close()
             time.sleep(5)
     except Exception:
         print ("No connection")
-        
+        time. sleep(2)
